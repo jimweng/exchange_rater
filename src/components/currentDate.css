@@ -1,0 +1,10 @@
+.current-date {
+    text-align:center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.current-date-row {
+    padding: 0%;
+    line-height: 60px;
+}
