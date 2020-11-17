@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Currencies from './Currencies';
-import BankOfTaiwan from '../api/BankOfTaiwan';
+//import Currencies from './Currencies';
 
 
 const Tabs = () => {
@@ -8,20 +7,31 @@ const Tabs = () => {
     
     const [currentActive, setCurrentActive] = useState(0)
 
-    const tabChange = pos => {
-        setCurrentActive()
+    const tabChange = position => {
+        setCurrentActive(position)
+        console.log('onClcik: ', position)
     }
+
+
 
     return (
         <div className="ui top attached tabular menu">
-            <Currencies className={currentActive} position="first" currency="美元" onClick={tabChange}/>
-            <Currencies className="" position="second" currency="日幣" />
-            <Currencies className="" position="third" currency="人民幣"/>
-            <Currencies className="" position="fourth" currency="歐元"/>
+            <div className={`item ${currentActive === "first" ? 'active' : ''}`} data-tab="first" onClick={()=>{tabChange("first")}}>美元</div>
+            <div className={`item ${currentActive === "second" ? 'active' : ''}`} data-tab="second" onClick={()=>{tabChange("second")}}>日幣</div>
+            <div className={`item ${currentActive === "third" ? 'active' : ''}`} data-tab="third" onClick={()=>{tabChange("third")}}>人民幣</div>
+            <div className={`item ${currentActive === "fourth" ? 'active' : ''}`} data-tab="fourth" onClick={()=>{tabChange("fourth")}}>歐元</div>
         </div>
         )
 }
 
+
+//
+/**
+ *             <Currencies className={currentActive} position="first" currency="美元" onClick={tabChange}/>
+            <Currencies className="" position="second" currency="日幣" />
+            <Currencies className="" position="third" currency="人民幣"/>
+            <Currencies className="" position="fourth" currency="歐元"/>
+ */
 
 
 
