@@ -3,6 +3,7 @@ import CurrentDate from './CurrentDate';
 import Tabs from './Tabs';
 import Price from './Price';
 import Chart from './Chart';
+import reducers from './reducers';
 
 class App extends React.Component {
     render() {
