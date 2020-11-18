@@ -15,6 +15,7 @@ const seletedCurrencyReducer = (selectedCurrency = 'USD', action) => {
         return action.payload;
     }
 
+    console.log('selectedCurrency: ', selectedCurrency)
     return selectedCurrency;
 }
 

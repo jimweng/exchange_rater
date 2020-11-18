@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { selectCurrency } from '../actions';
 import BankOfTaiwan from '../api/BankOfTaiwan';
 
 
@@ -28,4 +30,11 @@ const Tabs = () => {
         )
 }
 
-export default Tabs;
+const mapStateToProps = state => {
+    return { currencies: state.currencies }
+}
+
+export default connect(
+    mapStateToProps,
+    { selectCurrency }
+)(Tabs);
