@@ -4,9 +4,6 @@ import BankOfTaiwan from '../api/BankOfTaiwan';
 const Currency = ({ position, currency }) => {
     const [open, setOpen] = useState('first');
 
-    
-
-    
     const onClick = async (event) => {
         if (event.metaKey || event.crtlKey) {
             return;
