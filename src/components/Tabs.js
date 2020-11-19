@@ -1,40 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { selectCurrency } from '../actions';
-import BankOfTaiwan from '../api/BankOfTaiwan';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { selectCurrency } from "../actions";
+import BankOfTaiwan from "../api/BankOfTaiwan";
 
+const Tabs = (props) => {
+  const [currentActive, setCurrentActive] = useState(0);
 
-const Tabs = () => {
-    const [currentActive, setCurrentActive] = useState(0)
+  const tabChange = async (position) => {
 
-    const tabChange = async (position) => {
+    const positionToCurrency = {
+      first: "USD",
+      second: "JPY",
+      third: "RMD",
+      fourth: "EUD",
+    };
 
-        // const { data } = await BankOfTaiwan.get('USD')
-        // const domparser = new DOMParser(data)
-        // const doc = domparser.parseFromString(data, 'text/html')
+    props.selectCurrency(positionToCurrency[position]);
 
-        // console.log('result: ', doc.getElementsByTagName)
-        setCurrentActive(position)
-        console.log('onClcik: ', position)
-    }
+    setCurrentActive(position);
+  };
 
+  return (
+    <div className="ui top attached tabular menu">
+      <div className={`item ${currentActive === "first" ? "active" : ""}`} data-tab="first" onClick={() => { tabChange("first"); }}> 美元
+      <i class="us flag"></i>
+      </div>
+      <div className={`item ${currentActive === "second" ? "active" : ""}`} data-tab="second" onClick={() => { tabChange("second"); }}>日幣
+      <i class="jp flag"></i>
+      </div>
+      <div className={`item ${currentActive === "third" ? "active" : ""}`} data-tab="third" onClick={() => { tabChange("third"); }}>人民幣
+        <i class="cn flag"></i>
+      </div>
+      <div className={`item ${currentActive === "fourth" ? "active" : ""}`} data-tab="fourth" onClick={() => { tabChange("fourth"); }}>歐元
+        <i class="eu flag"></i>
+      </div>
+    </div>
+  );
+};
 
+const mapStateToProps = (state) => {
+  return { currencies: state.currencies };
+};
 
-    return (
-        <div className="ui top attached tabular menu">
-            <div className={`item ${currentActive === "first" ? 'active' : ''}`} data-tab="first" onClick={()=>{tabChange("first")}}>美元</div>
-            <div className={`item ${currentActive === "second" ? 'active' : ''}`} data-tab="second" onClick={()=>{tabChange("second")}}>日幣</div>
-            <div className={`item ${currentActive === "third" ? 'active' : ''}`} data-tab="third" onClick={()=>{tabChange("third")}}>人民幣</div>
-            <div className={`item ${currentActive === "fourth" ? 'active' : ''}`} data-tab="fourth" onClick={()=>{tabChange("fourth")}}>歐元</div>
-        </div>
-        )
-}
-
-const mapStateToProps = state => {
-    return { currencies: state.currencies }
-}
-
-export default connect(
-    mapStateToProps,
-    { selectCurrency }
-)(Tabs);
+export default connect(mapStateToProps, { selectCurrency })(Tabs);

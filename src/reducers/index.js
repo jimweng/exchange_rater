@@ -11,11 +11,10 @@ const currenciesReducer = () => {
 }
 
 const seletedCurrencyReducer = (selectedCurrency = 'USD', action) => {
-    if (action === 'CURRENCY_SELECTED') {
+    if (action.type === 'CURRENCY_SELECTED') {
         return action.payload;
     }
 
-    console.log('selectedCurrency: ', selectedCurrency)
     return selectedCurrency;
 }
 
