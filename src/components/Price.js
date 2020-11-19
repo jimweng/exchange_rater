@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 
 const Price = ({ currency }) => {
-  console.log("currency in Price: ", currency);
   const currencyTranslate = {
     USD: "美金",
     JPY: "日幣",

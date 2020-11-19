@@ -33,8 +33,18 @@ const Tabs = (props) => {
       price = data.data[1][1];
     }
 
-    console.log("price: ", price);
     props.selectCurrency(positionToCurrency[position], price);
+
+    const historialData = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://rate.bot.com.tw/xrt/quote/2020-10/${positionToCurrency[position]}`
+    );
+
+    const test = (historialData.data).split('series')
+    const test2 = test[1].split('Selling')
+    const test3 = test2[1].split(`,"name":"Buying"`)
+    const test4 = test3[0].split(`"data":`)
+
+    console.log('test4: ', test4[1])
 
   };
 

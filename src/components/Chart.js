@@ -54,7 +54,7 @@ const MyChart = ({ currency }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currency: state.selectedCurrency };
+  return { currency: state.selectedCurrency.currency };
 };
 
 export default connect(mapStateToProps)(MyChart);

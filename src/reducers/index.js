@@ -15,6 +15,7 @@ const seletedCurrencyReducer = (selectedCurrency = 'USD', action) => {
         return action;
     }
 
+    // TODO: Set for initial state
     return selectedCurrency;
 }
 
