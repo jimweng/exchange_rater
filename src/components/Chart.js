@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import { Chart } from "react-charts";
 import { connect } from "react-redux";
 
-const MyChart = ({ currency }) => {
-  console.log("The currency in MyChart: ", currency);
+const MyChart = ({ currency, historialData }) => {
+  console.log("The currency in MyChart: ", currency, historialData);
   const data = useMemo(
     () => [
       {
@@ -54,7 +54,7 @@ const MyChart = ({ currency }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currency: state.selectedCurrency.currency };
+  return { currency: state.selectedCurrency.currency, historialData: state.selectedCurrency.historialData };
 };
 
 export default connect(mapStateToProps)(MyChart);
