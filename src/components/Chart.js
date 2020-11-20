@@ -2,32 +2,16 @@ import React, { useMemo } from "react";
 import { Chart } from "react-charts";
 import { connect } from "react-redux";
 
-const MyChart = ({ currency, historialData }) => {
-  console.log("The currency in MyChart: ", currency, historialData);
+const MyChart = ({ currency='USD', historialData=[[]] }) => {
+
   const data = useMemo(
     () => [
       {
-        label: "Series 1",
-        data: [
-          [0, 1],
-          [1, 2],
-          [2, 4],
-          [3, 2],
-          [4, 7],
-        ],
-      },
-      {
-        label: "Series 2",
-        data: [
-          [0, 3],
-          [1, 1],
-          [2, 5],
-          [3, 6],
-          [4, 4],
-        ],
-      },
+        label: currency,
+        data: JSON.parse("["+historialData+"]")
+      }
     ],
-    []
+    [currency, historialData]
   );
 
   const axes = useMemo(

@@ -36,12 +36,8 @@ const Tabs = (props) => {
         `https://cors-anywhere.herokuapp.com/https://rate.bot.com.tw/xrt/quote/2020-10/${positionToCurrency[position]}?Lang=en-US`
     );
 
-    const test = (historialData.data).split('series')
-    const test2 = test[1].split('Selling')
-    const test3 = test2[1].split(`,"name":"Buying"`)
-    const test4 = test3[0].split(`"data":`)
-
-    props.selectCurrency(positionToCurrency[position], price, test4[1]);
+    const parsedData = (historialData.data).split('series')[1].split('Selling')[1].split(`,"name":"Buying"`)[0].split(`"data":`)[1].replace("[[", "[").replace("]]", "]")
+    props.selectCurrency(positionToCurrency[position], price, parsedData);
 
   };
 
