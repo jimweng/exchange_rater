@@ -3,13 +3,11 @@ import { connect } from "react-redux";
 import axios from 'axios';
 
 const Price = ({ currency }) => {
-  console.log('currency: ', currency)
 
   useEffect(() => {
     async function fetchData(currency) {
       const { data } = await axios.get(`https://cors-anywhere.herokuapp.com/https://tw.rter.info/json.php?t=bank&q=cash&iso=BKTWTWTP&_=${Date.now()}`)
       currency = { ...currency, price: data.data[0][1] }
-      console.log('currency.price: ', currency.price)
     }
     fetchData()
   }, [])
@@ -30,7 +28,6 @@ const Price = ({ currency }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('state in Price: ', state)
   return { currency: state.selectedCurrency };
 };
 

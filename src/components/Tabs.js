@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 const Tabs = (props) => {
   const [currentActive, setCurrentActive] = useState(0);
 
+  console.log('currentActive:', currentActive)
   const tabChange = async (position) => {
     const positionToCurrency = {
       first: "USD",
@@ -45,7 +46,7 @@ const Tabs = (props) => {
   return (
     <div className="ui top attached tabular menu">
       <div
-        className={`item ${currentActive === "first" ? "active" : ""}`}
+        className={`item ${(currentActive ===  'first') || (currentActive === 0) ? "active" : ""}`}
         data-tab="first"
         onClick={() => {
           tabChange("first");

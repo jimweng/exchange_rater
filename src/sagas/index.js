@@ -2,9 +2,7 @@ import { put, takeLatest, all } from "redux-saga/effects";
 import axios from 'axios';
 
 function* fetchCurrencyInfo(action) {
-  console.log("saga: ", action);
   try {
-    console.log('inside try: ')
     const { data } = yield axios.get(`https://cors-anywhere.herokuapp.com/https://tw.rter.info/json.php?t=bank&q=cash&iso=BKTWTWTP&_=${Date.now()}`)
 
     let price = 0;
@@ -25,7 +23,6 @@ function* fetchCurrencyInfo(action) {
         price = 30
     }
 
-    console.log('current_price: ', price)
     yield put({ type: 'CURRENCIES_SELECTED', currency: action.currency, price })
 
   } catch (e) {
