@@ -1,23 +1,26 @@
 import { combineReducers } from 'redux';
 
-const currenciesReducer = () => {
-    // TODO rootReducer, initial state
-    return { currency: 'USD', price: 29}
+
+// update price, historialData
+const initialState = {
+    type: 'CURRENCY_SELECTED',
+    currency: 'USD',
+    price: 30
 }
 
-const seletedCurrencyReducer = (selectedCurrency = 'USD', action) => {
+const seletedCurrencyReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'CURRENCY_SELECTED':
             return action
-        case 'CURRENCIES_UPDATE':
-            console.log('currencies_update')
-            return action
-        default:
-            return selectedCurrency
+        case 'CURRENCIES_SELECTED':
+            return {...state, price: action.price}
+        case 'UPDATE_HISTORIAL_DATA':
+            return {...state, historialData: action.historialData}
+        default: 
+            return state
     }
 }
 
 export default combineReducers({
-    currency: currenciesReducer,
     selectedCurrency: seletedCurrencyReducer
 })
