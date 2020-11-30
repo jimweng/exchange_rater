@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 
 const MyChart = ({ currency='USD', historialData=[[]] }) => {
 
+  // 4個 useMemo
+  // data 跟 顯示拆開
+
   const data = useMemo(
     () => [
       {
@@ -16,8 +19,8 @@ const MyChart = ({ currency='USD', historialData=[[]] }) => {
 
   const axes = useMemo(
     () => [
-      { primary: true, type: "linear", position: "bottom" },
-      { type: "linear", position: "left" },
+      { primary: true, type: "time", position: "bottom" },
+      { type: "linear", position: "left", min: 0 },
     ],
     []
   );
@@ -28,7 +31,7 @@ const MyChart = ({ currency='USD', historialData=[[]] }) => {
     <div
       style={{
         width: "400px",
-        height: "300px",
+        height: "400px",
       }}
     >
       <Chart data={data} axes={axes} />

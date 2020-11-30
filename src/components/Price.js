@@ -17,6 +17,7 @@ const Price = ({ currency }) => {
 };
 
 const mapStateToProps = (state) => {
+    console.log('state in Price: ', state)
     return { currency: state.selectedCurrency };
   };
   

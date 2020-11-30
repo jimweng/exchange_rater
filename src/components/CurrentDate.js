@@ -21,30 +21,4 @@ const CurrentDate = () => {
     )
 }
 
-// class CurrentDate extends React.Component {
-
-// getDate() {
-//     const newDate = new Date();
-//     const month = newDate.getMonth() + 1
-//     const date = newDate.getDate()
-
-//     return `${month}/${date}`
-// }
-
-// getTime() {
-//     const newDate = new Date();
-//     const hour = newDate.getHours();
-//     const minute = newDate.getMinutes()
-
-//     return `${hour}:${minute}`
-// }
-
-// render() {
-//     return (<div className="two column row current-date-row">
-//         <div className="column current-date"> {this.getDate()} </div>
-//         <div className="column current-date"> {this.getTime()} </div>
-//     </div>)
-// }
-// }
-
 export default CurrentDate;

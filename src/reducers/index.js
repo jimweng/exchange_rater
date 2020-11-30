@@ -1,22 +1,20 @@
 import { combineReducers } from 'redux';
 
 const currenciesReducer = () => {
-    // TODO
-    return [
-        { currency: 'USD', price: 29},
-        { currency: 'JPY', price: 0.3},
-        { currency: 'RMD', price: 4},
-        { currency: 'EUR', price: 40},
-    ]
+    // TODO rootReducer, initial state
+    return { currency: 'USD', price: 29}
 }
 
 const seletedCurrencyReducer = (selectedCurrency = 'USD', action) => {
-    if (action.type === 'CURRENCY_SELECTED') {
-        return action;
+    switch(action.type) {
+        case 'CURRENCY_SELECTED':
+            return action
+        case 'CURRENCIES_UPDATE':
+            console.log('currencies_update')
+            return action
+        default:
+            return selectedCurrency
     }
-
-    // TODO: Set for initial state
-    return selectedCurrency;
 }
 
 export default combineReducers({
