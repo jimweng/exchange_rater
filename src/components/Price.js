@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import axios from 'axios';
 
 const Price = ({ currency }) => {
-
   const currencyTranslate = {
     USD: "美金",
     JPY: "日幣",

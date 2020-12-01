@@ -33,6 +33,7 @@ function* fetchCurrencyInfo(action) {
 
 function* fetchHistorialInfo(action) {
   try{
+    yield put({ type: "ISLOADING" })
     const historialData = yield axios.get(`https://cors-anywhere.herokuapp.com/https://rate.bot.com.tw/xrt/quote/2020-10/${action.currency}?Lang=en-US`);
     const parsedData = (historialData.data).split('series')[1].split('Selling')[1].split(`,"name":"Buying"`)[0].split(`"data":`)[1].replace("[[", "[").replace("]]", "]")
     yield put({ type: "UPDATE_HISTORIAL_DATA", currency: action.currency, historialData: parsedData})
