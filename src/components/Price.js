@@ -4,14 +4,6 @@ import axios from 'axios';
 
 const Price = ({ currency }) => {
 
-  useEffect(() => {
-    async function fetchData(currency) {
-      const { data } = await axios.get(`https://cors-anywhere.herokuapp.com/https://tw.rter.info/json.php?t=bank&q=cash&iso=BKTWTWTP&_=${Date.now()}`)
-      currency = { ...currency, price: data.data[0][1] }
-    }
-    fetchData()
-  }, [])
-
   const currencyTranslate = {
     USD: "美金",
     JPY: "日幣",

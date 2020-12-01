@@ -1,19 +1,39 @@
-import React from 'react';
-import CurrentDate from './CurrentDate';
-import Tabs from './Tabs';
-import Price from './Price';
-import Chart from './Chart';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import CurrentDate from "./CurrentDate";
+import Tabs from "./Tabs";
+import Price from "./Price";
+import Chart from "./Chart";
 
-class App extends React.Component {
-    render() {
-        return (<div className="ui grid" >
-            <CurrentDate />
-            <Tabs />
-            <Price />
-            <Chart />
-        </div>
-        )
+const App = (props) => {
+  // useEffect
+  useEffect(()=>{
+    props.selectCurrency('USD')
+  }, [])
+
+  return (
+    <div className="ui grid">
+      <CurrentDate />
+      <Tabs />
+      <Price />
+      <Chart />
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+    return { currency: state.selectedCurrency.currency }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        selectCurrency: (currency) =>{
+            dispatch({
+                type: 'CURRENCY_SELECTED',
+                currency: currency
+            })
+        }
     }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

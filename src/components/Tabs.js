@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 const Tabs = (props) => {
   const [currentActive, setCurrentActive] = useState(0);
 
-  console.log('currentActive:', currentActive)
   const tabChange = async (position) => {
     const positionToCurrency = {
       first: "USD",
