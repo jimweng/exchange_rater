@@ -14,32 +14,6 @@ const Tabs = (props) => {
 
     setCurrentActive(position);
     props.selectCurrency(positionToCurrency[position]);
-
-    // const { data } = await axios.get(
-    //   `https://cors-anywhere.herokuapp.com/https://tw.rter.info/json.php?t=bank&q=cash&iso=BKTWTWTP&_=${Date.now()}`
-    // );
-
-    // let price = 0;
-    // if (positionToCurrency[position] === "USD") {
-    //   price = data.data[0][1];
-    // } else if (positionToCurrency[position] === "JPY") {
-    //   price = data.data[2][1];
-    // } else if (positionToCurrency[position] === "CNY") {
-    //   price = data.data[6][1];
-    // } else if (positionToCurrency[position] === "EUR") {
-    //   price = data.data[1][1];
-    // }
-
-    // console.log('price: ', price)
-    // const historialData = await axios.get(
-    //     `https://cors-anywhere.herokuapp.com/https://rate.bot.com.tw/xrt/quote/2020-10/${positionToCurrency[position]}?Lang=en-US`
-    // );
-
-    // const parsedData = (historialData.data).split('series')[1].split('Selling')[1].split(`,"name":"Buying"`)[0].split(`"data":`)[1].replace("[[", "[").replace("]]", "]")
-    // // TODO 如何設定currency至array
-    // console.log('parsedData: ', parsedData)
-
-    //props.selectCurrency(positionToCurrency[position], price, parsedData);
   };
 
   return (

@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 
 const MyChart = ({ currency='USD', historialData=[[]], isLoading }) => {
 
-  // 4個 useMemo
-  // data 跟 顯示拆開
-
   const data = useMemo(
     () => [
       {

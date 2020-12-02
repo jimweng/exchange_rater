@@ -6,7 +6,6 @@ import Price from "./Price";
 import Chart from "./Chart";
 
 const App = (props) => {
-  // useEffect
   useEffect(()=>{
     props.selectCurrency('USD')
   }, [])
