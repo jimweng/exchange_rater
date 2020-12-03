@@ -1,24 +1,33 @@
 import './currentDate.css';
-import { useState, useEffect } from 'react';
+import React from 'react';
 
-const CurrentDate = () => {
+class CurrentDate extends React.Component {
 
-    const [time, setTime] = useState(`${new Date().getMonth() + 1}/ ${new Date().getDate()}`)
-    const [currentDate, setCurrentDate] = useState(`${new Date().getHours()}: ${new Date().getMinutes}: ${new Date().getSeconds()}`)
+    constructor(props) {
+        super(props)
+        this.state = {
+            currentDate: `${new Date().getMonth() + 1}/ ${new Date().getDate()}`,
+            time: `${new Date().getHours()}: ${new Date().getMinutes()}: ${new Date().getSeconds()}`
+        }
+    }
 
-    useEffect(() => {
+    componentDidUpdate() {
         setInterval(() => {
-            setCurrentDate(`${new Date().getMonth() + 1}/ ${new Date().getDate()}`)
-            setTime(`${new Date().getHours()}: ${new Date().getMinutes()}: ${new Date().getSeconds()}`)
-        }, 1000 * 1);
-    }, []);
+            this.setState({
+                currentDate: `${new Date().getMonth() + 1}/ ${new Date().getDate()}`,
+                time: `${new Date().getHours()}: ${new Date().getMinutes()}: ${new Date().getSeconds()}`
+            })
+        }, 1000 * 1)
+    }
 
-    return (
-        <div className="two column row current-date-row">
-            <div className="column current-date"> {currentDate} </div>
-            <div className="column current-date"> {time} </div>
-        </div>
-    )
+    render() {
+        return (
+            <div className="two column row current-date-row">
+                <div className="column current-date"> {this.state.currentDate} </div>
+                <div className="column current-date"> {this.state.time} </div>
+            </div>
+        )
+    }
 }
 
 export default CurrentDate;
