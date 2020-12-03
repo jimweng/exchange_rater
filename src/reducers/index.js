@@ -1,9 +1,17 @@
 import { combineReducers } from "redux";
 
+
+const positionToCurrency = {
+  first: "USD",
+  second: "JPY",
+  third: "CNY",
+  fourth: "EUR",
+};
+
 // update price, historialData
 const initialState = {
   type: "CURRENCY_SELECTED",
-  currency: "USD",
+  currency:  positionToCurrency[localStorage.getItem("selectItem")] || "USD",
   price: 30,
   isLoading: false,
 };
