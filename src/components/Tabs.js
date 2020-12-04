@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const Tabs = (props) => {
-  //const [currentActive, setCurrentActive] = useState(0);
-  let myStorage = window.localStorage.getItem('selectItem') || 'first'
+  const [position, setPosition] = useState(window.localStorage.getItem('selectItem') || 'first')
 
-  const tabChange = async (position) => {
-    //setCurrentActive(position);
+  useEffect(()=>{
     props.selectCurrency(positionToCurrency[position]);
-    window.localStorage.removeItem('selectItem')
-    myStorage = window.localStorage.setItem('selectItem', position)
-    // 換了值，但沒換reference
+  }, [position])
+
+  const tabChange = (position) => {
+    props.selectCurrency(positionToCurrency[position]);
+    window.localStorage.setItem('selectItem', position)
+    setPosition(window.localStorage.getItem('selectItem'))
   };
 
   return (
     <div className="ui top attached tabular menu">
 
       <div
-        className={`item ${(myStorage === 'first') ? "active" : ""}`}
+        className={`item ${(position === 'first') ? "active" : ""}`}
         data-tab="first"
         onClick={() => {
           tabChange("first");
@@ -27,7 +28,7 @@ const Tabs = (props) => {
         <i className="us flag"></i>
       </div>
       <div
-        className={`item ${myStorage === "second" ? "active" : ""}`}
+        className={`item ${position === "second" ? "active" : ""}`}
         data-tab="second"
         onClick={() => {
           tabChange("second");
@@ -37,7 +38,7 @@ const Tabs = (props) => {
         <i className="jp flag"></i>
       </div>
       <div
-        className={`item ${myStorage === "third" ? "active" : ""}`}
+        className={`item ${position === "third" ? "active" : ""}`}
         data-tab="third"
         onClick={() => {
           tabChange("third");
@@ -47,7 +48,7 @@ const Tabs = (props) => {
         <i className="cn flag"></i>
       </div>
       <div
-        className={`item ${myStorage === "fourth" ? "active" : ""}`}
+        className={`item ${position === "fourth" ? "active" : ""}`}
         data-tab="fourth"
         onClick={() => {
           tabChange("fourth");

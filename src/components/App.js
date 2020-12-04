@@ -5,10 +5,7 @@ import Tabs from "./Tabs";
 import Price from "./Price";
 import Chart from "./Chart";
 
-const App = (props) => {
-  useEffect(()=>{
-    props.selectCurrency('USD')
-  }, [])
+const App = () => {
 
   return (
     <div className="ui grid">
@@ -20,19 +17,4 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-    return { currency: state.selectedCurrency.currency }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        selectCurrency: (currency) =>{
-            dispatch({
-                type: 'CURRENCY_SELECTED',
-                currency: currency
-            })
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null)(App);
