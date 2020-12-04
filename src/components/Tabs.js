@@ -2,23 +2,24 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const Tabs = (props) => {
-  const [position, setPosition] = useState(window.localStorage.getItem('selectItem') || 'first')
+  const [position, setPosition] = useState(
+    window.localStorage.getItem("selectItem") || "first"
+  );
 
-  useEffect(()=>{
+  useEffect(() => {
     props.selectCurrency(positionToCurrency[position]);
-  }, [position])
+  }, [position]);
 
   const tabChange = (position) => {
     props.selectCurrency(positionToCurrency[position]);
-    window.localStorage.setItem('selectItem', position)
-    setPosition(window.localStorage.getItem('selectItem'))
+    window.localStorage.setItem("selectItem", position);
+    setPosition(window.localStorage.getItem("selectItem"));
   };
 
   return (
     <div className="ui top attached tabular menu">
-
       <div
-        className={`item ${(position === 'first') ? "active" : ""}`}
+        className={`item ${position === "first" ? "active" : ""}`}
         data-tab="first"
         onClick={() => {
           tabChange("first");
