@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { Chart } from "react-charts";
 import { connect } from "react-redux";
+import { createSelector } from "reselect";
 
-const MyChart = ({ currency = "USD", historialData = [[]], isLoading }) => {
+const MyChart = ({ historialData = [[]], isLoading }) => {
   const [height, setHeight] = useState(window.screen.height);
   const [width, setWidth] = useState(window.screen.width);
 
@@ -16,7 +17,7 @@ const MyChart = ({ currency = "USD", historialData = [[]], isLoading }) => {
   const data = useMemo(
     () => [
       {
-        label: currency,
+        label: "Historial Price",
         data: JSON.parse("[" + historialData + "]"),
       },
     ],
@@ -46,12 +47,22 @@ const MyChart = ({ currency = "USD", historialData = [[]], isLoading }) => {
   return lineChart;
 };
 
-const mapStateToProps = (state) => {
+const getHistorialData = (state) => {
   return {
-    currency: state.selectedCurrency.currency,
     historialData: state.selectedCurrency.historialData,
     isLoading: state.selectedCurrency.isLoading,
   };
+};
+
+const selectProps = createSelector(
+  [getHistorialData],
+  ({ historialData, isLoading }) => {
+    return { historialData, isLoading };
+  }
+);
+
+const mapStateToProps = (state) => {
+  return selectProps(state);
 };
 
 export default connect(mapStateToProps)(MyChart);

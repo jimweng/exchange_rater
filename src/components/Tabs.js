@@ -16,6 +16,8 @@ const Tabs = (props) => {
     setPosition(window.localStorage.getItem("selectItem"));
   };
 
+
+  // 用map簡化
   return (
     <div className="ui top attached tabular menu">
       <div
