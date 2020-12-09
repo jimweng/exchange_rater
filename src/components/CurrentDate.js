@@ -1,14 +1,16 @@
 import './currentDate.css';
 import React from 'react';
 
+const initialState = {
+    currentDate: `${new Date().getMonth() + 1}/ ${new Date().getDate()}`,
+    time: `${new Date().getHours()}: ${new Date().getMinutes()}: ${new Date().getSeconds()}`
+}
+
 class CurrentDate extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            currentDate: `${new Date().getMonth() + 1}/ ${new Date().getDate()}`,
-            time: `${new Date().getHours()}: ${new Date().getMinutes()}: ${new Date().getSeconds()}`
-        }
+        this.state = initialState
     }
 
     componentDidMount() {

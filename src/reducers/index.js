@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { fromJS } from 'immutable'
 
 const positionToCurrency = {
   first: "USD",
@@ -8,31 +9,30 @@ const positionToCurrency = {
 };
 
 // update price, historialData
-const initialState = {
+const initialState = fromJS({
   type: "CURRENCY_SELECTED",
   currency: positionToCurrency[localStorage.getItem("selectItem")] || "USD",
   price: 30,
   isLoading: false,
   priceIsload: false,
-};
+});
 
 const seletedCurrencyReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CURRENCY_SELECTED":
-      return {
-        ...state,
-        currency: action.currency,
-        isLoading: false,
-        priceIsload: false,
-      };
+      return state.set('currency', fromJS(action.currency))
+      .set('isLoading', false)
+      .set('priceIsload', false)
     case "CURRENCIES_SELECTED":
-      return { ...state, price: action.price, priceIsload: true };
+      return state.set('price', fromJS(action.price))
+      .set('priceIsload', true)
     case "UPDATE_HISTORIAL_DATA":
-      return { ...state, historialData: action.historialData, isLoading: true };
+      return state.set('historialData', fromJS(action.historialData))
+        .set('isLoading', true)
     case "ISLOADING":
-      return { ...state, isLoading: false };
+      return state.set('isLoading', false)
     case "PRICE_ISLOADING":
-      return { ...state, priceIsLoad: false };
+      return state.set('priceIsLoad', false)
     default:
       return state;
   }

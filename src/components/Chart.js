@@ -57,8 +57,8 @@ const MyChart = ({ historialData = [[]], isLoading }) => {
 
 const getHistorialData = (state) => {
   return {
-    historialData: state.selectedCurrency.historialData,
-    isLoading: state.selectedCurrency.isLoading,
+    historialData: state.selectedCurrency.get('historialData') || [],
+    isLoading: state.selectedCurrency.get('isLoading'),
   };
 };
 

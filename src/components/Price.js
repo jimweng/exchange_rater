@@ -15,7 +15,11 @@ const priceTab = (currency) => {
 }
 
 const loader = (
-<div className="ui active loader"></div>
+  <div>
+  <div class="ui active dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+</div>
 )
 
 const currencyTranslate = {
@@ -26,11 +30,11 @@ const currencyTranslate = {
 };
 
 const getPrice = (state) => {
-  if (state.selectedCurrency.currency)
+  if (state.selectedCurrency.get('currency')) 
     return {
-      price: state.selectedCurrency.price,
-      currency: state.selectedCurrency.currency,
-      priceIsload: state.selectedCurrency.priceIsload
+      price: state.selectedCurrency.get('price'),
+      currency: state.selectedCurrency.get('currency'),
+      priceIsload: state.selectedCurrency.get('priceIsload')
     };
 };
 

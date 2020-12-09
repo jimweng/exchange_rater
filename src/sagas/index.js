@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* fetchCurrencyInfo(action) {
   try {
+    yield put({type: "PRICE_ISLOADING"})
     const { data } = yield axios.get(`https://cors-anywhere.herokuapp.com/https://tw.rter.info/json.php?t=bank&q=cash&iso=BKTWTWTP&_=${Date.now()}`)
 
     let price = 0;
