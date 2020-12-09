@@ -32,6 +32,14 @@ const MyChart = ({ historialData = [[]], isLoading }) => {
     []
   );
 
+  const loadingPage = (
+    <div className="ui segment">
+      <div className="ui active dimmer">
+        <div className="ui loader"></div>
+      </div>
+    </div>
+  );
+
   const lineChart = (
     // A react-chart hyper-responsively and continuously fills the available
     // space of its parent element automatically
@@ -41,7 +49,7 @@ const MyChart = ({ historialData = [[]], isLoading }) => {
         height: `${height * 0.5}px`,
       }}
     >
-      {!isLoading && <Chart data={data} axes={axes} />}
+      {isLoading ? <Chart data={data} axes={axes} /> : loadingPage}
     </div>
   );
   return lineChart;

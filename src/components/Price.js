@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { createSelector } from "reselect";
 
 const Price = ({ currency }) => {
-  console.log("Price: ", currency);
   return (
     <div className="three column row">
       <div className="column">{currencyTranslate[currency.currency]}</div>

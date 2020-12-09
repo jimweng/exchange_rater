@@ -19,13 +19,13 @@ const initialState = {
 const seletedCurrencyReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CURRENCY_SELECTED":
-      return {...state, currency: action.currency};
+      return {...state, currency: action.currency, isLoading: false};
     case "CURRENCIES_SELECTED":
       return { ...state, price: action.price };
     case "UPDATE_HISTORIAL_DATA":
-      return { ...state, historialData: action.historialData, isLoading: false };
+      return { ...state, historialData: action.historialData, isLoading: true };
     case "ISLOADING":
-      return { ...state, isLoading: !state.isLoading };
+      return { ...state, isLoading: false };
     default:
       return state;
   }
