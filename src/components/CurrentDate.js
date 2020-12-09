@@ -11,7 +11,7 @@ class CurrentDate extends React.Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         setInterval(() => {
             this.setState({
                 currentDate: `${new Date().getMonth() + 1}/ ${new Date().getDate()}`,
