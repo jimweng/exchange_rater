@@ -16,51 +16,25 @@ const Tabs = (props) => {
     setPosition(window.localStorage.getItem("selectItem"));
   };
 
+  const tabsList = (tabsInfo) => {
+    return tabsInfo.map((tab) => {
+      return (
+        <div
+          className={`item ${position === tab.location ? "active" : ""}`}
+          data-tab={`${tab.location}`}
+          onClick={() => {
+            tabChange(tab.location);
+          }}
+        >
+          {tab.zh}
+          <i className={`${tab.flag} flag`}></i>
+        </div>
+      );
+    });
+  };
 
-  // 用map簡化
   return (
-    <div className="ui top attached tabular menu">
-      <div
-        className={`item ${position === "first" ? "active" : ""}`}
-        data-tab="first"
-        onClick={() => {
-          tabChange("first");
-        }}
-      >
-        美金
-        <i className="us flag"></i>
-      </div>
-      <div
-        className={`item ${position === "second" ? "active" : ""}`}
-        data-tab="second"
-        onClick={() => {
-          tabChange("second");
-        }}
-      >
-        日幣
-        <i className="jp flag"></i>
-      </div>
-      <div
-        className={`item ${position === "third" ? "active" : ""}`}
-        data-tab="third"
-        onClick={() => {
-          tabChange("third");
-        }}
-      >
-        人民幣
-        <i className="cn flag"></i>
-      </div>
-      <div
-        className={`item ${position === "fourth" ? "active" : ""}`}
-        data-tab="fourth"
-        onClick={() => {
-          tabChange("fourth");
-        }}
-      >
-        歐元
-        <i className="eu flag"></i>
-      </div>
-    </div>
+    <div className="ui top attached tabular menu">{tabsList(tabsInfo)}</div>
   );
 };
 
@@ -70,6 +44,29 @@ const positionToCurrency = {
   third: "CNY",
   fourth: "EUR",
 };
+
+const tabsInfo = [
+  {
+    flag: "us",
+    location: "first",
+    zh: "美金",
+  },
+  {
+    flag: "jp",
+    location: "second",
+    zh: "日幣",
+  },
+  {
+    flag: "cn",
+    location: "third",
+    zh: "人民幣",
+  },
+  {
+    flag: "eu",
+    loaction: "fourth",
+    zh: "歐元",
+  },
+];
 
 const mapStateToProps = (state) => {
   return { currency: state.currency };
