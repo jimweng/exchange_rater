@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const Tabs = (props) => {
   const [position, setPosition] = useState(
-    window.localStorage.getItem("selectItem") || "first"
+    window.localStorage.getItem("selectItem") === undefined ? "first" : window.localStorage.getItem("selectItem")
   );
 
   useEffect(() => {

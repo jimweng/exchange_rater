@@ -30,12 +30,13 @@ const currencyTranslate = {
 };
 
 const getPrice = (state) => {
-  if (state.selectedCurrency.get('currency')) 
+  if (state.selectedCurrency.get('currency')) { 
     return {
       price: state.selectedCurrency.get('price'),
       currency: state.selectedCurrency.get('currency'),
       priceIsload: state.selectedCurrency.get('priceIsload')
     };
+  }
 };
 
 const selectProps = createSelector([getPrice], ({ price, currency, priceIsload }) => {
